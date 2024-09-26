@@ -12,4 +12,18 @@ public partial class MoneyPage : ContentPage
     {
         InitializeComponent();
     }
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        try
+        {
+        lblDisplay.Text = App.dateCalc.GetTotalCost();
+        }
+        catch (Exception e)
+        {
+            lblDisplay.Text = $"0.00";
+            DisplayAlert("Error", e.Message, "Okay");
+        }
+    }
 }
